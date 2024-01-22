@@ -21,6 +21,7 @@
   "dependencies": {
     "@vueuse/core": "^10.6.1",
     "axios": "^1.6.2",
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
     "echarts": "5.1.2",
     "lodash": "^4.17.21",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.1",
     "@commitlint/config-conventional": "^18.4.0",
+    "@types/crypto-js": "^4.2.2",
     "@types/echarts": "^4.9.21",
     "@types/lodash": "^4.14.201",
     "@types/nprogress": "^0.2.3",
