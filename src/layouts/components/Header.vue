@@ -3,7 +3,7 @@
     <t-head-menu :class="menuCls" :theme="menuTheme" expand-type="popup" :value="active">
       <template #logo>
         <span v-if="showLogo" class="header-logo-container" @click="handleNav('/dashboard/base')">
-          <logo-full class="t-logo" />
+          <!-- <logo-full class="t-logo" /> -->
         </span>
         <div v-else class="header-operate-left">
           <t-button theme="default" shape="square" variant="text" @click="changeCollapsed">
@@ -21,27 +21,27 @@
           <search v-if="layout !== 'side'" :layout="layout" />
 
           <!-- 全局通知 -->
-          <notice />
+          <!-- <notice /> -->
 
-          <t-tooltip placement="bottom" :content="$t('layout.header.code')">
+          <!-- <t-tooltip placement="bottom" :content="$t('layout.header.code')">
             <t-button theme="default" shape="square" variant="text" @click="navToGitHub">
               <t-icon name="logo-github" />
             </t-button>
-          </t-tooltip>
-          <t-tooltip placement="bottom" :content="$t('layout.header.help')">
+          </t-tooltip> -->
+          <!-- <t-tooltip placement="bottom" :content="$t('layout.header.help')">
             <t-button theme="default" shape="square" variant="text" @click="navToHelper">
               <t-icon name="help-circle" />
             </t-button>
-          </t-tooltip>
+          </t-tooltip> -->
           <t-dropdown trigger="click">
             <t-button theme="default" shape="square" variant="text">
               <translate-icon />
             </t-button>
             <t-dropdown-menu>
-              <t-dropdown-item v-for="(lang, index) in langList" :key="index" :value="lang.value" @click="changeLang">{{
-                lang.content
-              }}</t-dropdown-item></t-dropdown-menu
-            >
+              <t-dropdown-item v-for="(lang, index) in langList" :key="index" :value="lang.value" @click="changeLang">
+                {{ lang.content }}
+              </t-dropdown-item>
+            </t-dropdown-menu>
           </t-dropdown>
           <t-dropdown :min-column-width="120" trigger="click">
             <template #dropdown>
@@ -59,7 +59,9 @@
                 <t-icon class="header-user-avatar" name="user-circle" />
               </template>
               <div class="header-user-account">{{ user.userInfo.name }}</div>
-              <template #suffix><chevron-down-icon /></template>
+              <template #suffix>
+                <chevron-down-icon />
+              </template>
             </t-button>
           </t-dropdown>
           <t-tooltip placement="bottom" :content="$t('layout.header.setting')">
@@ -79,7 +81,7 @@ import type { PropType } from 'vue';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
-import LogoFull from '@/assets/assets-logo-full.svg?component';
+// import LogoFull from '@/assets/assets-logo-full.svg?component';
 import { prefix } from '@/config/global';
 import { langList } from '@/locales/index';
 import { useLocale } from '@/locales/useLocale';
@@ -88,7 +90,7 @@ import { useSettingStore, useUserStore } from '@/store';
 import type { MenuRoute } from '@/types/interface';
 
 import MenuContent from './MenuContent.vue';
-import Notice from './Notice.vue';
+// import Notice from './Notice.vue';
 import Search from './Search.vue';
 
 const props = defineProps({
@@ -172,13 +174,13 @@ const handleLogout = () => {
   });
 };
 
-const navToGitHub = () => {
-  window.open('https://github.com/tencent/tdesign-vue-next-starter');
-};
+// const navToGitHub = () => {
+//   window.open('https://github.com/tencent/tdesign-vue-next-starter');
+// };
 
-const navToHelper = () => {
-  window.open('http://tdesign.tencent.com/starter/docs/get-started');
-};
+// const navToHelper = () => {
+//   window.open('http://tdesign.tencent.com/starter/docs/get-started');
+// };
 </script>
 <style lang="less" scoped>
 .@{starter-prefix}-header {
