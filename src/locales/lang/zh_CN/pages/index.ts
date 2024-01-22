@@ -6,10 +6,8 @@ import detailDeploy from './detail-deploy';
 import detailSecondary from './detail-secondary';
 import formBase from './form-base';
 import formStep from './form-step';
-import listBase from './list-base';
-import listCard from './list-card';
-import listFilter from './list-filter';
-import listTree from './list-tree';
+import gameBase from './game-base';
+import gameDetail from './game-detail';
 import login from './login';
 import result from './result';
 import user from './user';
@@ -17,10 +15,8 @@ import user from './user';
 export default {
   dashboardBase,
   dashboardDetail,
-  listBase,
-  listCard,
-  listFilter,
-  listTree,
+  gameBase,
+  gameDetail,
   detailBase,
   detailCard,
   detailDeploy,
