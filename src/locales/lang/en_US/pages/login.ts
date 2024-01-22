@@ -7,20 +7,19 @@ export default {
   signIn: 'Sign in',
   existAccount: 'Exist Account?',
   refresh: 'refresh',
-  wechatLogin: 'Login with WeChat',
-  accountLogin: 'Login with Account',
-  phoneLogin: 'Login with Mobile Phone',
   input: {
     account: 'please enter account',
     password: 'please enter password',
     phone: 'please enter phone',
     verification: 'please enter verification code',
+    captcha: 'please enter captcha code',
   },
   required: {
     account: 'account is required',
     phone: 'phone is required',
     password: 'password is required',
     verification: 'verification code is require',
+    captcha: 'captcha code is require',
   },
   sendVerification: 'send',
 };
