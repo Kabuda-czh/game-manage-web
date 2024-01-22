@@ -89,8 +89,12 @@ export interface RequestOptions {
 }
 
 export interface Result<T = any> {
-  code: number;
-  data: T;
+  content: {
+    data: T;
+    isSucc: boolean;
+    msg: string;
+  };
+  errors: any;
 }
 
 export interface AxiosRequestConfigRetry extends AxiosRequestConfig {

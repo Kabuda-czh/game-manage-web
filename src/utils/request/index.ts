@@ -43,16 +43,16 @@ const transform: AxiosTransform = {
       throw new Error('请求接口错误');
     }
 
-    //  这里 code为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const { code } = data;
+    //  这里 code为 后台统一的字段，需要在 types.ts 内修改为项目自己的接口返回格式
+    const { content } = data;
 
-    // 这里逻辑可以根据项目进行修改
-    const hasSuccess = data && code === 0;
+    // TODO: 这里逻辑可以根据项目进行修改
+    const hasSuccess = data && content.isSucc;
     if (hasSuccess) {
-      return data.data;
+      return content as any;
     }
 
-    throw new Error(`请求接口错误, 错误码: ${code}`);
+    throw new Error(`请求接口错误, 错误信息: ${content.msg}`);
   },
 
   // 请求前处理配置
