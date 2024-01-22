@@ -12,11 +12,9 @@
         <div>{{ $t('pages.result.browserIncompatible.recommend') }}</div>
         <div class="recommend-browser">
           <div>
-            <thumbnail class="browser-icon" url="https://tdesign.gtimg.com/starter/result-page/chorme.png" />
             <div>Chrome</div>
           </div>
           <div>
-            <thumbnail class="browser-icon" url="https://tdesign.gtimg.com/starter/result-page/qq-browser.png" />
             <div>QQ Browser</div>
           </div>
         </div>
@@ -31,7 +29,6 @@ export default {
 </script>
 <script setup lang="ts">
 import Result from '@/components/result/index.vue';
-import Thumbnail from '@/components/thumbnail/index.vue';
 </script>
 
 <style lang="less" scoped>
