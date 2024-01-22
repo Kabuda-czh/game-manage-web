@@ -116,6 +116,7 @@ const settingStore = useSettingStore();
 const LAYOUT_OPTION = ['side', 'top', 'mix'];
 
 const MODE_OPTIONS = [
+  // @ts-ignore
   { type: 'light', text: t('layout.setting.theme.options.light') },
   { type: 'dark', text: t('layout.setting.theme.options.dark') },
   { type: 'auto', text: t('layout.setting.theme.options.auto') },
