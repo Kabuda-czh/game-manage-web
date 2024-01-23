@@ -44,15 +44,15 @@ const transform: AxiosTransform = {
     }
 
     // 需要在 types.ts 内修改为项目自己的接口返回格式
-    const { content, isSucc } = data;
+    const { Content, IsSucc } = data;
 
     // 这里逻辑可以根据项目进行修改
-    const hasSuccess = data && isSucc;
+    const hasSuccess = data && IsSucc;
     if (hasSuccess) {
-      return content;
+      return Content;
     }
 
-    throw new Error(`请求接口错误, 错误信息: ${data.errors || data.msg}`);
+    throw new Error(`请求接口错误, 错误信息: ${data.Errors || data.Msg}`);
   },
 
   // 请求前处理配置

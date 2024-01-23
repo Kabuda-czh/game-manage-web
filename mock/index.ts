@@ -6,9 +6,9 @@ export default [
     url: '/api/get-purchase-list',
     method: 'get',
     response: () => ({
-      isSucc: true,
-      msg: '请求成功',
-      content: {
+      IsSucc: true,
+      Msg: '请求成功',
+      Content: {
         ...Mock.mock({
           'list|1-100': [
             {
@@ -31,16 +31,16 @@ export default [
           ],
         }),
       },
-      errors: null,
+      Errors: null,
     }),
   },
   {
     url: '/api/get-list',
     method: 'get',
     response: () => ({
-      isSucc: true,
-      msg: '请求成功',
-      content: {
+      IsSucc: true,
+      Msg: '请求成功',
+      Content: {
         ...Mock.mock({
           'list|1-100': [
             {
@@ -58,16 +58,16 @@ export default [
           ],
         }),
       },
-      errors: null,
+      Errors: null,
     }),
   },
   {
     url: '/api/detail-basic',
     method: 'get',
     response: () => ({
-      isSucc: true,
-      msg: '请求成功',
-      content: {
+      IsSucc: true,
+      Msg: '请求成功',
+      Content: {
         ...Mock.mock({
           name: 'td_20023747',
           loginType: 'Web',
@@ -78,16 +78,16 @@ export default [
           timeZone: '(GMT+08:00)中国时区—北京（Asia/Beijing）',
         }),
       },
-      errors: null,
+      Errors: null,
     }),
   },
   {
     url: '/api/get-card-list',
     method: 'get',
     response: () => ({
-      isSucc: true,
-      msg: '请求成功',
-      content: {
+      IsSucc: true,
+      Msg: '请求成功',
+      Content: {
         ...Mock.mock({
           'list|48-50': [
             {
@@ -113,16 +113,16 @@ export default [
           ],
         }),
       },
-      errors: null,
+      Errors: null,
     }),
   },
   {
     url: '/api/get-project-list',
     method: 'get',
     response: () => ({
-      isSucc: true,
-      msg: '请求成功',
-      content: {
+      IsSucc: true,
+      Msg: '请求成功',
+      Content: {
         ...Mock.mock({
           'list|1-50': [
             {
@@ -141,7 +141,7 @@ export default [
           ],
         }),
       },
-      errors: null,
+      Errors: null,
     }),
   },
   {
@@ -149,9 +149,9 @@ export default [
     method: 'get',
     timeout: 2000,
     response: {
-      isSucc: true,
-      msg: '请求成功',
-      content: {
+      IsSucc: true,
+      Msg: '请求成功',
+      Content: {
         ...Mock.mock({
           list: [
             {
@@ -298,7 +298,7 @@ export default [
           ],
         }),
       },
-      errors: null,
+      Errors: null,
     },
   },
 ] as MockMethod[];

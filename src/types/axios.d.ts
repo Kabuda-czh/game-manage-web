@@ -89,11 +89,11 @@ export interface RequestOptions {
 }
 
 export interface Result<T = any> {
-  isSucc: boolean;
-  content: T;
-  msg: string;
-  errors: string | null;
-  timestamp: number;
+  IsSucc: boolean;
+  Content: T;
+  Msg: string;
+  Errors: string | null;
+  Timestamp: number;
 }
 
 export interface AxiosRequestConfigRetry extends AxiosRequestConfig {
