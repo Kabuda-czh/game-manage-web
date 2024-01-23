@@ -1,7 +1,7 @@
 import sha256 from 'crypto-js/sha256';
 import { defineStore } from 'pinia';
 
-import { getCaptcha, getLogin, getUserInfo } from '@/api/user';
+import { getCaptcha, getLogin, getLogout, getMyInfo } from '@/api/user';
 import { usePermissionStore } from '@/store';
 import type { UserInfo } from '@/types/interface';
 
@@ -25,17 +25,18 @@ export const useUserStore = defineStore('user', {
       userInfo.password = sha256(userInfo.password as string).toString();
 
       const res = await getLogin(userInfo);
-      if (res.isSucc) {
+      if (res) {
         this.token = 'token';
       } else {
         throw res;
       }
     },
     async getUserInfo() {
-      const res = await getUserInfo();
+      const res = await getMyInfo();
       this.userInfo = res;
     },
     async logout() {
+      await getLogout();
       this.token = '';
       this.userInfo = { ...InitUserInfo };
     },
