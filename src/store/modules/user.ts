@@ -37,9 +37,11 @@ export const useUserStore = defineStore('user', {
       this.userInfo = res;
     },
     async logout() {
-      await getLogout();
-      this.token = '';
-      this.userInfo = { ...InitUserInfo };
+      if (this.token) {
+        this.token = '';
+        this.userInfo = { ...InitUserInfo };
+        await getLogout();
+      }
     },
     async getCaptcha() {
       const res = await getCaptcha();
