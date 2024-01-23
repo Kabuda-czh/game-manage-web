@@ -21,7 +21,7 @@ export function getCaptcha() {
 }
 
 export function getLogin(userInfo: Record<string, unknown>) {
-  return request.get<string>({
+  return request.get<any>({
     url: `${Api.Login}/${userInfo.account}/${userInfo.password}/${userInfo.captcha}`,
   });
 }
