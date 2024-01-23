@@ -13,10 +13,6 @@
         @page-change="rehandlePageChange"
         @change="rehandleChange"
       >
-        <template #icon="slotProps">
-          <t-avatar :src="slotProps.icon" size="default" />
-        </template>
-
         <template #op="slotProps">
           <t-space>
             <t-link theme="primary" @click="handleClickDetail()"> {{ $t('pages.gameBase.detail') }}</t-link>
@@ -41,11 +37,11 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { PrimaryTableCol, Progress, TableRowData } from 'tdesign-vue-next';
+import { Avatar, PrimaryTableCol, Progress, TableRowData } from 'tdesign-vue-next';
 import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { getList } from '@/api/list';
+import { getMyContainerList } from '@/api/game';
 import { prefix } from '@/config/global';
 import { t } from '@/locales';
 import { useSettingStore } from '@/store';
@@ -66,27 +62,39 @@ const COLUMNS: PrimaryTableCol<TableRowData>[] = [
   {
     // @ts-ignore
     title: t('pages.gameBase.gameIcon'),
-    colKey: 'icon',
+    colKey: 'Container.Game.PicUrl',
     width: 100,
     align: 'center',
+    cell: (h, { row }) => {
+      return h(Avatar, {
+        size: 'default',
+        image: row.Container.Game.PicUrl,
+      });
+    },
   },
-  { title: t('pages.gameBase.gameName'), colKey: 'name', ellipsis: true, align: 'center' },
+  { title: t('pages.gameBase.gameName'), colKey: 'Container.Game.Name', ellipsis: true, align: 'center' },
   {
     title: t('pages.gameBase.gameCpu'),
     ellipsis: true,
-    colKey: 'cpu',
+    colKey: 'Container.Status.CPURatio',
     align: 'center',
     cell: (h, { row }) => {
-      return h(Progress, { percentage: +row.cpu, color: progressColor(+row.cpu) });
+      return h(Progress, {
+        percentage: row.Container.Status.CPURatio * 100,
+        color: progressColor(row.Container.Status.CPURatio * 100),
+      });
     },
   },
   {
     title: t('pages.gameBase.gameMemory'),
     ellipsis: true,
-    colKey: 'memory',
+    colKey: 'Container.Status.MemUsed',
     align: 'center',
     cell: (h, { row }) => {
-      return h(Progress, { percentage: +row.memory, color: progressColor(+row.memory) });
+      return h(Progress, {
+        percentage: Number((row.Container.Status.MemUsed / row.Container.Status.MemLimit).toFixed(2)) * 100,
+        color: progressColor(Number((row.Container.Status.MemUsed / row.Container.Status.MemLimit).toFixed(2)) * 100),
+      });
     },
   },
   {
@@ -103,6 +111,7 @@ const COLUMNS: PrimaryTableCol<TableRowData>[] = [
 ];
 
 const data = ref([]);
+
 const pagination = ref({
   defaultPageSize: 20,
   total: 100,
@@ -113,11 +122,11 @@ const dataLoading = ref(false);
 const fetchData = async () => {
   dataLoading.value = true;
   try {
-    const { list } = await getList();
-    data.value = list;
+    const res = await getMyContainerList();
+    data.value = res;
     pagination.value = {
       ...pagination.value,
-      total: list.length,
+      total: res.length,
     };
   } catch (e) {
     console.log(e);
