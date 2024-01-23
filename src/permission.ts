@@ -75,7 +75,10 @@ router.afterEach((to) => {
     const userStore = useUserStore();
     const permissionStore = getPermissionStore();
 
-    userStore.logout();
+    if (userStore.token) {
+      userStore.logout();
+    }
+
     permissionStore.restoreRoutes();
   }
   NProgress.done();
