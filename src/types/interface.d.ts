@@ -42,6 +42,7 @@ export type CommonObjType = {
 
 export interface UserInfo {
   name: string;
+  avatar: string;
   roles: string[];
 }
 

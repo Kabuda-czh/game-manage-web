@@ -56,9 +56,9 @@
             </template>
             <t-button class="header-user-btn" theme="default" variant="text">
               <template #icon>
-                <t-icon class="header-user-avatar" name="user-circle" />
+                <t-avatar class="header-user-avatar" size="small" :src="user.userInfo.avatar" />
               </template>
-              <div class="header-user-account">{{ user.userInfo.name }}</div>
+              <div class="header-user-account">{{ user.userInfo.name || 'user' }}</div>
               <template #suffix>
                 <chevron-down-icon />
               </template>
@@ -262,6 +262,12 @@ const handleLogout = () => {
   &:hover {
     cursor: pointer;
   }
+}
+
+.header-user-avatar {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
 }
 
 .header-user-account {
