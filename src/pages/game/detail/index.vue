@@ -1,4 +1,52 @@
 <template>
+  <t-card class="game-info-list" :title="$t('pages.gameDetail.gameInfo.title')" :bordered="false">
+    <t-row
+      class="content"
+      justify="space-between"
+      :gutter="[
+        { xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 40 },
+        { xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 40 },
+      ]"
+    >
+      <t-col class="contract" :md="12" :lg="6" :xl="4" :xxl="3">
+        <div class="contract-title">
+          {{ $t('pages.gameDetail.gameInfo.gameIcon') }}
+        </div>
+        <div class="contract-detail">
+          <t-avatar :src="''" />
+        </div>
+      </t-col>
+      <t-col class="contract" :md="12" :lg="6" :xl="4" :xxl="3">
+        <div class="contract-title">
+          {{ $t('pages.gameDetail.gameInfo.gameName') }}
+        </div>
+        <div class="contract-detail">
+          {{ '游戏名称1' }}
+        </div>
+      </t-col>
+      <t-col class="contract" :md="12" :lg="6" :xl="4" :xxl="3">
+        <div class="contract-title">
+          {{ $t('pages.gameDetail.gameInfo.gameStatus') }}
+        </div>
+        <div class="contract-detail">
+          <t-tag theme="success">
+            {{ $t(`pages.gameDetail.gameInfo.gameStatusValue.${1}`) }}
+          </t-tag>
+        </div>
+      </t-col>
+      <t-col class="contract" :md="12" :lg="6" :xl="4" :xxl="3">
+        <div class="contract-title">
+          {{ $t('pages.gameDetail.gameInfo.operation') }}
+        </div>
+        <div class="contract-detail">
+          <t-space>
+            <t-link theme="primary"> {{ $t('pages.gameBase.start') }}</t-link>
+            <t-link theme="danger"> {{ $t('pages.gameBase.stop') }}</t-link>
+          </t-space>
+        </div>
+      </t-col>
+    </t-row>
+  </t-card>
   <t-form
     ref="form"
     class="base-form"
@@ -11,10 +59,9 @@
   >
     <div class="form-basic-container">
       <div class="form-basic-item">
-        <div class="form-basic-container-title">{{ $t('pages.gameDetail.title') }}</div>
+        <div class="form-basic-container-title">{{ $t('pages.gameDetail.form.title') }}</div>
         <!-- 动态表单 -->
         <t-row
-          class="row-gap"
           :gutter="[
             { xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 40 },
             { xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 40 },
@@ -46,19 +93,20 @@
             </t-form-item>
           </t-col>
         </t-row>
-      </div>
-    </div>
-
-    <div class="form-submit-container">
-      <div class="form-submit-sub">
-        <div class="form-submit-left">
-          <t-button theme="primary" class="form-submit-confirm" type="submit">
-            {{ $t('pages.formBase.confirm') }}
-          </t-button>
-          <t-button type="reset" class="form-submit-cancel" theme="default" variant="base">
-            {{ $t('pages.formBase.cancel') }}
-          </t-button>
-        </div>
+        <t-row :style="{ marginTop: '2rem' }">
+          <t-col :span="12">
+            <div style="display: flex; justify-content: center; align-items: center">
+              <t-space size="small">
+                <t-button theme="primary" type="submit">
+                  {{ $t('pages.gameDetail.form.submit') }}
+                </t-button>
+                <t-button theme="default" variant="base" type="reset">
+                  {{ $t('pages.gameDetail.form.reset') }}
+                </t-button>
+              </t-space>
+            </div>
+          </t-col>
+        </t-row>
       </div>
     </div>
   </t-form>
