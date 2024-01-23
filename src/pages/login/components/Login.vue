@@ -56,6 +56,7 @@
 </template>
 
 <script setup lang="ts">
+import cloneDeep from 'lodash/cloneDeep';
 import type { FormInstanceFunctions, FormRule, SubmitContext } from 'tdesign-vue-next';
 import { MessagePlugin } from 'tdesign-vue-next';
 import { ref } from 'vue';
@@ -94,7 +95,8 @@ const route = useRoute();
 const onSubmit = async (ctx: SubmitContext) => {
   if (ctx.validateResult === true) {
     try {
-      await userStore.login(formData.value);
+      const loginData = cloneDeep(formData.value);
+      await userStore.login(loginData);
 
       MessagePlugin.success('登录成功');
       const redirect = route.query.redirect as string;
