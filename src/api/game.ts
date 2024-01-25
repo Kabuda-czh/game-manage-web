@@ -1,4 +1,4 @@
-import type { ContainerListResult } from '@/api/model/gameModel';
+import type { ContainerListResult, ContainerModel } from '@/api/model/gameModel';
 import { request } from '@/utils/request';
 
 const Api = {
@@ -13,7 +13,7 @@ export function getMyContainerList() {
 }
 
 export function getContainerDetail(containerid: string) {
-  return request.get<any>({
+  return request.get<ContainerModel>({
     url: `${Api.ContainerDetail}/${containerid}`,
   });
 }

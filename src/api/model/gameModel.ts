@@ -3,7 +3,7 @@ export interface ContainerListResult {
   User: any;
 }
 
-interface ContainerModel {
+export interface ContainerModel {
   ContainerId: string;
   ContainerName: string;
   Game: GameModel;
@@ -17,7 +17,7 @@ interface ContainerModel {
 interface GameModel {
   AddTime: Date;
   AddedByUser: any;
-  Config: any;
+  ConfigFields: any;
   ConfigFilePath: string;
   ConfigFileSchema: number;
   GameId: string;

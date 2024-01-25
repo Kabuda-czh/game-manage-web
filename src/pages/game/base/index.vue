@@ -15,8 +15,8 @@
       >
         <template #op="slotProps">
           <t-space>
-            <t-link theme="primary" @click="handleClickDetail()"> {{ $t('pages.gameBase.detail') }}</t-link>
-            <t-link theme="primary" @click="handleClickDetail()"> {{ $t('pages.gameBase.start') }}</t-link>
+            <t-link theme="primary" @click="handleClickDetail(slotProps)"> {{ $t('pages.gameBase.detail') }}</t-link>
+            <t-link theme="primary" @click="handleClickDetail(slotProps)"> {{ $t('pages.gameBase.start') }}</t-link>
             <t-link theme="danger" @click="handleClickDelete(slotProps)"> {{ $t('pages.gameBase.stop') }}</t-link>
           </t-space>
         </template>
@@ -42,6 +42,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { getMyContainerList } from '@/api/game';
+import type { ContainerListResult } from '@/api/model/gameModel';
 import { prefix } from '@/config/global';
 import { t } from '@/locales';
 import { useSettingStore } from '@/store';
@@ -153,8 +154,13 @@ const rehandleChange = (changeParams: unknown, triggerAndData: unknown) => {
   console.log('统一Change', changeParams, triggerAndData);
 };
 
-const handleClickDetail = () => {
-  router.push('/detail/base');
+const handleClickDetail = (row: { row: ContainerListResult }) => {
+  router.push({
+    name: 'GameDetail',
+    query: {
+      id: row.row.Container.ContainerId,
+    },
+  });
 };
 
 const handleClickDelete = (row: { rowIndex: any }) => {

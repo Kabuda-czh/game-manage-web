@@ -1,5 +1,6 @@
 <template>
   <div>
+    <t-loading :loading="loading" fullscreen />
     <t-card class="game-info-list" :title="$t('pages.gameDetail.gameInfo.title')" :bordered="false">
       <t-row
         class="content"
@@ -14,7 +15,7 @@
             {{ $t('pages.gameDetail.gameInfo.gameIcon') }}
           </div>
           <div class="contract-detail">
-            <t-avatar :src="''" />
+            <t-avatar :image="cardData.PicUrl" />
           </div>
         </t-col>
         <t-col class="contract" :md="12" :lg="6" :xl="4" :xxl="3">
@@ -22,7 +23,7 @@
             {{ $t('pages.gameDetail.gameInfo.gameName') }}
           </div>
           <div class="contract-detail">
-            {{ '游戏名称1' }}
+            {{ cardData.Name }}
           </div>
         </t-col>
         <t-col class="contract" :md="12" :lg="6" :xl="4" :xxl="3">
@@ -31,7 +32,7 @@
           </div>
           <div class="contract-detail">
             <t-tag theme="success">
-              {{ $t(`pages.gameDetail.gameInfo.gameStatusValue.${1}`) }}
+              {{ $t(`pages.gameDetail.gameInfo.gameStatusValue.${cardData.IsEnabled ? 1 : 0}`) }}
             </t-tag>
           </div>
         </t-col>
@@ -68,7 +69,7 @@
               { xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 40 },
             ]"
           >
-            <t-col v-for="[key, value] in Object.entries(PalFormConfig)" :key="key" :md="12" :lg="6" :xl="4" :xxl="3">
+            <t-col v-for="[key, value] in Object.entries(formConfig)" :key="key" :md="12" :lg="6" :xl="4" :xxl="3">
               <t-form-item :label="value.unit ? `${value.label}(${value.unit})` : value.label" :name="key">
                 <div v-if="['input', 'number', 'text'].includes(value.type)">
                   <t-input v-model="formData[key]" :style="{ width: '322px' }" :placeholder="`请输入${value.label}`" />
@@ -128,13 +129,22 @@ export default {
 <script setup lang="ts">
 import type { FormRule, SubmitContext } from 'tdesign-vue-next';
 import { MessagePlugin } from 'tdesign-vue-next';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
+import { getContainerDetail } from '@/api/game';
+
+// import type { ContainerListResult } from '@/api/model/gameModel';
 import { PalFormConfig } from './config';
 
+const route = useRoute();
+
+const cardData = ref<Record<string, any>>({});
 const formData = ref<Record<string, any>>({});
+const loading = ref<boolean>(true);
 
 const FORM_RULES = ref<Record<string, FormRule[]>>({});
+const formConfig = computed(() => PalFormConfig);
 
 const onReset = () => {
   MessagePlugin.warning('取消配置');
@@ -147,6 +157,16 @@ const onSubmit = (ctx: SubmitContext) => {
 };
 
 const init = () => {
+  getContainerDetail(route.query.id as string)
+    .then((res) => {
+      cardData.value.Name = res.Game.Name;
+      cardData.value.PicUrl = res.Game.PicUrl;
+      cardData.value.IsEnabled = res.Game.IsEnabled;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
+
   // 生成表单校验规则, TODO: 应该从后端获取到对应的表单动态值之后再生成
   Object.entries(PalFormConfig).forEach(([key, value]) => {
     FORM_RULES.value[key] = [
