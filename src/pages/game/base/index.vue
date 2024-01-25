@@ -20,11 +20,6 @@
             <t-link theme="danger" @click="handleClickDelete(slotProps)"> {{ $t('pages.gameBase.stop') }}</t-link>
           </t-space>
         </template>
-        <template #more="slotProps">
-          <t-space>
-            <t-link theme="danger" @click="handleClickRefund(slotProps)"> {{ $t('pages.gameBase.refund') }}</t-link>
-          </t-space>
-        </template>
       </t-table>
     </t-card>
   </div>
@@ -103,12 +98,6 @@ const COLUMNS: PrimaryTableCol<TableRowData>[] = [
     colKey: 'op',
     align: 'center',
   },
-  {
-    title: t('pages.gameBase.more'),
-    colKey: 'more',
-    width: 80,
-    align: 'center',
-  },
 ];
 
 const data = ref([]);
@@ -165,10 +154,6 @@ const handleClickDetail = (row: { row: ContainerListResult }) => {
 
 const handleClickDelete = (row: { rowIndex: any }) => {
   confirmVisible.value = true;
-};
-
-const handleClickRefund = (row: { rowIndex: any }) => {
-  console.log('退款', row);
 };
 
 const headerAffixedTop = computed(

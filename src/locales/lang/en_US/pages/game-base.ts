@@ -4,9 +4,7 @@ export default {
   gameCpu: 'cpu',
   gameMemory: 'mem',
   operation: 'Operation',
-  more: 'more',
   detail: 'detail',
   start: 'start',
   stop: 'stop',
-  refund: 'refund',
 };
