@@ -71,10 +71,20 @@
           >
             <t-col v-for="[key, value] in Object.entries(formConfig)" :key="key" :md="12" :lg="6" :xl="4" :xxl="3">
               <t-form-item :label="value.unit ? `${value.label}(${value.unit})` : value.label" :name="key">
-                <div v-if="['input', 'number', 'text'].includes(value.type)">
+                <div v-if="value.domType === 'input'">
                   <t-input v-model="formData[key]" :style="{ width: '322px' }" :placeholder="`请输入${value.label}`" />
                 </div>
-                <div v-if="['select'].includes(value.type)">
+                <div v-if="value.domType === 'inputNumber'">
+                  <t-input-number
+                    v-model="formData[key]"
+                    theme="normal"
+                    :style="{ width: '322px' }"
+                    :min="value.min"
+                    :max="value.max"
+                    :placeholder="`请输入${value.label}`"
+                  />
+                </div>
+                <div v-if="value.domType === 'select'">
                   <t-select
                     v-model="formData[key]"
                     :style="{ width: '322px' }"
@@ -92,10 +102,13 @@
                     </t-option>
                   </t-select>
                 </div>
-                <div v-if="['switch'].includes(value.type)">
+                <div v-if="value.domType === 'switch'">
                   <div :style="{ width: '322px' }">
                     <t-switch v-model="formData[key]" />
                   </div>
+                </div>
+                <div v-if="value.domType === 'slider'">
+                  <t-slider v-model="formData[key]" :style="{ width: '322px' }" :min="value.min" :max="value.max" />
                 </div>
               </t-form-item>
             </t-col>

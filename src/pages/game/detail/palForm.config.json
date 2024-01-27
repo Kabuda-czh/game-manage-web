@@ -1,0 +1,386 @@
+{
+  "AdminPassword": {
+    "domType": "input",
+    "label": "管理员密码",
+    "show": true
+  },
+  "AutoResetGuildTimeNoOnlinePlayers": {
+    "domType": "number",
+    "label": "公会无在线玩家自动重置时间",
+    "show": true,
+    "unit": "小时"
+  },
+  "BanListURL": {
+    "domType": "input",
+    "label": "黑名单URL",
+    "show": true
+  },
+  "BaseCampMaxNum": {
+    "domType": "number",
+    "label": "基地最大数量",
+    "show": true,
+    "unit": "个"
+  },
+  "BaseCampWorkerMaxNum": {
+    "domType": "number",
+    "label": "基地工人最大数量",
+    "show": true,
+    "unit": "个"
+  },
+  "BuildObjectDamageRate": {
+    "domType": "number",
+    "label": "建筑物损坏倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "BuildObjectDeteriorationDamageRate": {
+    "domType": "number",
+    "label": "建筑物腐蚀倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "CollectionDropRate": {
+    "domType": "number",
+    "label": "采集掉落倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "CollectionObjectHpRate": {
+    "domType": "number",
+    "label": "采集物体血量倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "CollectionObjectRespawnSpeedRate": {
+    "domType": "number",
+    "label": "采集物体刷新倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "CoopPlayerMaxNum": {
+    "domType": "number",
+    "label": "合作玩家最大数量",
+    "show": true,
+    "unit": "个"
+  },
+  "DayTimeSpeedRate": {
+    "domType": "number",
+    "label": "白天时间流速",
+    "show": true,
+    "unit": "倍"
+  },
+  "DeathPenalty": {
+    "domType": "select",
+    "label": "死亡惩罚",
+    "options": [
+      {
+        "label": "全部",
+        "value": "All"
+      },
+      {
+        "label": "经验",
+        "value": "Exp"
+      },
+      {
+        "label": "金钱",
+        "value": "Money"
+      },
+      {
+        "label": "物品",
+        "value": "Item"
+      },
+      {
+        "label": "无",
+        "value": "None"
+      }
+    ],
+    "show": true
+  },
+  "Difficulty": {
+    "domType": "select",
+    "label": "难度",
+    "options": [
+      {
+        "label": "简单",
+        "value": "Easy"
+      },
+      {
+        "label": "普通",
+        "value": "Normal"
+      },
+      {
+        "label": "困难",
+        "value": "Hard"
+      },
+      {
+        "label": "无限",
+        "value": "Infinite"
+      }
+    ],
+    "show": true
+  },
+  "DropItemAliveMaxHours": {
+    "domType": "number",
+    "label": "掉落物品最大存活时间",
+    "show": true,
+    "unit": "小时"
+  },
+  "DropItemMaxNum": {
+    "domType": "number",
+    "label": "掉落物品最大数量",
+    "show": true,
+    "unit": "个"
+  },
+  "DropItemMaxNum_UNKO": {
+    "domType": "number",
+    "label": "UNKO掉落物品最大数量",
+    "show": true,
+    "unit": "个"
+  },
+  "EnemyDropItemRate": {
+    "domType": "number",
+    "label": "敌人掉落倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "ExpRate": {
+    "domType": "number",
+    "label": "经验倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "GuildPlayerMaxNum": {
+    "domType": "number",
+    "label": "公会最大玩家数量",
+    "show": true,
+    "unit": "个"
+  },
+  "NightTimeSpeedRate": {
+    "domType": "number",
+    "label": "夜晚时间流速",
+    "show": true,
+    "unit": "倍"
+  },
+  "PalAutoHPRegeneRate": {
+    "domType": "number",
+    "label": "帕鲁自动回血倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PalAutoHpRegeneRateInSleep": {
+    "domType": "number",
+    "label": "帕鲁睡觉回血倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PalCaptureRate": {
+    "domType": "number",
+    "label": "捕捉倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PalDamageRateAttack": {
+    "domType": "number",
+    "label": "帕鲁攻击倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PalDamageRateDefense": {
+    "domType": "number",
+    "label": "帕鲁防御倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PalEggDefaultHatchingTime": {
+    "domType": "number",
+    "label": "帕鲁蛋默认孵化时间",
+    "show": true,
+    "unit": "小时"
+  },
+  "PalSpawnNumRate": {
+    "domType": "number",
+    "label": "刷新倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PalStaminaDecreaceRate": {
+    "domType": "number",
+    "label": "帕鲁体力倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PalStomachDecreaceRate": {
+    "domType": "number",
+    "label": "帕鲁饥饿倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PlayerAutoHPRegeneRate": {
+    "domType": "number",
+    "label": "玩家自动回血倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PlayerAutoHpRegeneRateInSleep": {
+    "domType": "number",
+    "label": "玩家睡觉回血倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PlayerDamageRateAttack": {
+    "domType": "number",
+    "label": "玩家攻击倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PlayerDamageRateDefense": {
+    "domType": "number",
+    "label": "玩家防御倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PlayerStaminaDecreaceRate": {
+    "domType": "number",
+    "label": "玩家体力倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PlayerStomachDecreaceRate": {
+    "domType": "number",
+    "label": "玩家饥饿倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "PublicIP": {
+    "domType": "input",
+    "label": "公共IP",
+    "show": true
+  },
+  "PublicPort": {
+    "domType": "number",
+    "label": "公共端口",
+    "show": true
+  },
+  "RCONEnabled": {
+    "domType": "switch",
+    "label": "RCON开启",
+    "show": true
+  },
+  "RCONPort": {
+    "domType": "number",
+    "label": "RCON端口",
+    "show": true
+  },
+  "Region": {
+    "domType": "input",
+    "label": "地区",
+    "show": true
+  },
+  "ServerDescription": {
+    "domType": "input",
+    "label": "服务器描述",
+    "show": true
+  },
+  "ServerName": {
+    "domType": "input",
+    "label": "服务器名称",
+    "show": true
+  },
+  "ServerPassword": {
+    "domType": "input",
+    "label": "服务器密码",
+    "show": true
+  },
+  "ServerPlayerMaxNum": {
+    "domType": "number",
+    "label": "服务器玩家最大数量",
+    "show": true,
+    "unit": "个"
+  },
+  "WorkSpeedRate": {
+    "domType": "number",
+    "label": "工作速度倍率",
+    "show": true,
+    "unit": "倍"
+  },
+  "bActiveUNKO": {
+    "domType": "switch",
+    "label": "UNKO",
+    "show": true
+  },
+  "bAutoResetGuildNoOnlinePlayers": {
+    "domType": "switch",
+    "label": "自动重置公会无在线玩家",
+    "show": true
+  },
+  "bCanPickupOtherGuildDeathPenaltyDrop": {
+    "domType": "switch",
+    "label": "可拾取其他公会死亡惩罚物品",
+    "show": true
+  },
+  "bEnableAimAssistKeyboard": {
+    "domType": "switch",
+    "label": "键盘自动瞄准",
+    "show": true
+  },
+  "bEnableAimAssistPad": {
+    "domType": "switch",
+    "label": "手柄自动瞄准",
+    "show": true
+  },
+  "bEnableDefenseOtherGuildPlayer": {
+    "domType": "switch",
+    "label": "防御其他公会玩家",
+    "show": true
+  },
+  "bEnableFastTravel": {
+    "domType": "switch",
+    "label": "快速旅行",
+    "show": true
+  },
+  "bEnableFriendlyFire": {
+    "domType": "switch",
+    "label": "友军伤害",
+    "show": true
+  },
+  "bEnableInvaderEnemy": {
+    "domType": "switch",
+    "label": "入侵敌人",
+    "show": true
+  },
+  "bEnableNonLoginPenalty": {
+    "domType": "switch",
+    "label": "非登录惩罚",
+    "show": true
+  },
+  "bEnablePlayerToPlayerDamage": {
+    "domType": "switch",
+    "label": "玩家间伤害",
+    "show": true
+  },
+  "bExistPlayerAfterLogout": {
+    "domType": "switch",
+    "label": "退出后角色存在",
+    "show": true
+  },
+  "bIsMultiplay": {
+    "domType": "switch",
+    "label": "多人游戏",
+    "show": true
+  },
+  "bIsPvP": {
+    "domType": "switch",
+    "label": "PVP",
+    "show": true
+  },
+  "bIsStartLocationSelectByMap": {
+    "domType": "switch",
+    "label": "地图选择开始位置",
+    "show": true
+  },
+  "bUseAuth": {
+    "domType": "switch",
+    "label": "使用验证",
+    "show": true
+  }
+}
