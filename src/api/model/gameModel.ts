@@ -17,7 +17,7 @@ export interface ContainerModel {
 interface GameModel {
   AddTime: Date;
   AddedByUser: any;
-  ConfigFields: any;
+  ConfigFields: Record<string, ConfigFieldModel>;
   ConfigFilePath: string;
   ConfigFileSchema: number;
   GameId: string;
@@ -44,3 +44,49 @@ interface StatusModel {
   StartedTime: Date;
   StartupCommand: any;
 }
+
+interface IConfigFieldModelBase {
+  Label: string;
+  Show?: boolean;
+  Unit?: string;
+}
+
+interface IConfigFieldModelInput extends IConfigFieldModelBase {
+  DomType: 'input';
+  Default: string | number;
+}
+
+interface IConfigFieldModelInputNumber extends IConfigFieldModelBase {
+  DomType: 'inputNumber';
+  Default: number;
+  Min?: number;
+  Max?: number;
+  Step?: number;
+}
+
+type FormOptionType = Array<{ Label: string; Value: string }>;
+interface IConfigFieldModelSelect extends IConfigFieldModelBase {
+  DomType: 'select';
+  Default: string;
+  Options: FormOptionType;
+}
+
+interface IConfigFieldModelSwitch extends IConfigFieldModelBase {
+  DomType: 'switch';
+  Default: boolean;
+}
+
+interface IConfigFieldModelSlider extends IConfigFieldModelBase {
+  DomType: 'slider';
+  Default: number | number[];
+  Min?: number;
+  Max?: number;
+  Step?: number;
+}
+
+export type ConfigFieldModel =
+  | IConfigFieldModelInput
+  | IConfigFieldModelInputNumber
+  | IConfigFieldModelSelect
+  | IConfigFieldModelSwitch
+  | IConfigFieldModelSlider;

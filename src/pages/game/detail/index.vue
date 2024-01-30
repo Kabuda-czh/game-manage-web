@@ -72,12 +72,18 @@
             <t-col v-for="[key, value] in Object.entries(formConfig)" :key="key" :md="12" :lg="6" :xl="4" :xxl="3">
               <t-form-item :label="value.Unit ? `${value.Label}(${value.Unit})` : value.Label" :name="key">
                 <div v-if="value.DomType === 'input'">
-                  <t-input v-model="formData[key]" :style="{ width: '322px' }" :placeholder="`请输入${value.Label}`" />
+                  <t-input
+                    v-model="formData[key]"
+                    :default-value="value.Default"
+                    :style="{ width: '322px' }"
+                    :placeholder="`请输入${value.Label}`"
+                  />
                 </div>
                 <div v-if="value.DomType === 'inputNumber'">
                   <t-input-number
                     v-model="formData[key]"
                     theme="normal"
+                    :default-value="value.Default"
                     :style="{ width: '322px' }"
                     :min="value.Min"
                     :max="value.Max"
@@ -88,7 +94,7 @@
                   <t-select
                     v-model="formData[key]"
                     :style="{ width: '322px' }"
-                    class="demo-select-base"
+                    :default-input-value="value.Default"
                     :placeholder="`请选择${value.Label}`"
                     clearable
                   >
@@ -104,11 +110,17 @@
                 </div>
                 <div v-if="value.DomType === 'switch'">
                   <div :style="{ width: '322px' }">
-                    <t-switch v-model="formData[key]" />
+                    <t-switch v-model="formData[key]" :default-value="value.Default" />
                   </div>
                 </div>
                 <div v-if="value.DomType === 'slider'">
-                  <t-slider v-model="formData[key]" :style="{ width: '322px' }" :min="value.Min" :max="value.Max" />
+                  <t-slider
+                    v-model="formData[key]"
+                    :default-value="value.Default"
+                    :style="{ width: '322px' }"
+                    :min="value.Min"
+                    :max="value.Max"
+                  />
                 </div>
               </t-form-item>
             </t-col>
@@ -146,9 +158,7 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { getContainerDetail } from '@/api/game';
-
-// import type { ContainerListResult } from '@/api/model/gameModel';
-import type { FormConfigType } from './config';
+import type { ConfigFieldModel } from '@/api/model/gameModel';
 
 const route = useRoute();
 const router = useRouter();
@@ -158,13 +168,14 @@ const formData = ref<Record<string, any>>({});
 const loading = ref<boolean>(true);
 
 const FORM_RULES = ref<Record<string, FormRule[]>>({});
-const formConfig = ref<Record<string, FormConfigType>>({});
+const formConfig = ref<Record<string, ConfigFieldModel>>({});
 
 const onReset = () => {
   MessagePlugin.warning('取消配置');
 };
 
 const onSubmit = (ctx: SubmitContext) => {
+  console.log(formData.value);
   if (ctx.validateResult === true) {
     MessagePlugin.success('新建成功');
   }
@@ -189,7 +200,7 @@ const init = () => {
 
       formConfig.value = res.Game.ConfigFields;
 
-      Object.entries(res.Game.ConfigFields).forEach(([key, value]: [string, FormConfigType]) => {
+      Object.entries(res.Game.ConfigFields).forEach(([key, value]) => {
         FORM_RULES.value[key] = [
           {
             required: true,
