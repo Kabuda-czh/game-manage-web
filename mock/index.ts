@@ -191,58 +191,32 @@ export default [
                 },
               ],
             },
-            // {
-            //   path: '/form',
-            //   name: 'form',
-            //   component: 'LAYOUT',
-            //   redirect: '/form/base',
-            //   meta: {
-            //     title: {
-            //       zh_CN: '表单页',
-            //       en_US: 'Form',
-            //     },
-            //     icon: 'edit-1',
-            //   },
-            //   children: [
-            //     {
-            //       path: 'base',
-            //       name: 'FormBase',
-            //       component: '/form/base/index',
-            //       meta: {
-            //         title: {
-            //           zh_CN: '基础表单页',
-            //           en_US: 'Base Form',
-            //         },
-            //       },
-            //     },
-            //   ],
-            // },
-            // {
-            //   path: '/detail',
-            //   name: 'detail',
-            //   component: 'LAYOUT',
-            //   redirect: '/detail/base',
-            //   meta: {
-            //     title: {
-            //       zh_CN: '详情页',
-            //       en_US: 'Detail',
-            //     },
-            //     icon: 'layers',
-            //   },
-            //   children: [
-            //     {
-            //       path: 'base',
-            //       name: 'DetailBase',
-            //       component: '/detail/base/index',
-            //       meta: {
-            //         title: {
-            //           zh_CN: '基础详情页',
-            //           en_US: 'Base Detail',
-            //         },
-            //       },
-            //     },
-            //   ],
-            // },
+            {
+              path: '/admin',
+              name: 'admin',
+              component: 'LAYOUT',
+              redirect: '/admin/user',
+              meta: {
+                title: {
+                  zh_CN: '后台管理',
+                  en_US: 'Admin',
+                },
+                icon: 'edit-1',
+              },
+              children: [
+                {
+                  path: 'user',
+                  name: 'AdminUser',
+                  component: '/admin/user/index',
+                  meta: {
+                    title: {
+                      zh_CN: '用户管理',
+                      en_US: 'User',
+                    },
+                  },
+                },
+              ],
+            },
             // {
             //   path: '/frame',
             //   name: 'Frame',
