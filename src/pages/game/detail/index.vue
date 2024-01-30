@@ -70,45 +70,45 @@
             ]"
           >
             <t-col v-for="[key, value] in Object.entries(formConfig)" :key="key" :md="12" :lg="6" :xl="4" :xxl="3">
-              <t-form-item :label="value.unit ? `${value.label}(${value.unit})` : value.label" :name="key">
-                <div v-if="value.domType === 'input'">
-                  <t-input v-model="formData[key]" :style="{ width: '322px' }" :placeholder="`请输入${value.label}`" />
+              <t-form-item :label="value.Unit ? `${value.Label}(${value.Unit})` : value.Label" :name="key">
+                <div v-if="value.DomType === 'input'">
+                  <t-input v-model="formData[key]" :style="{ width: '322px' }" :placeholder="`请输入${value.Label}`" />
                 </div>
-                <div v-if="value.domType === 'inputNumber'">
+                <div v-if="value.DomType === 'inputNumber'">
                   <t-input-number
                     v-model="formData[key]"
                     theme="normal"
                     :style="{ width: '322px' }"
-                    :min="value.min"
-                    :max="value.max"
-                    :placeholder="`请输入${value.label}`"
+                    :min="value.Min"
+                    :max="value.Max"
+                    :placeholder="`请输入${value.Label}`"
                   />
                 </div>
-                <div v-if="value.domType === 'select'">
+                <div v-if="value.DomType === 'select'">
                   <t-select
                     v-model="formData[key]"
                     :style="{ width: '322px' }"
                     class="demo-select-base"
-                    :placeholder="`请选择${value.label}`"
+                    :placeholder="`请选择${value.Label}`"
                     clearable
                   >
                     <t-option
-                      v-for="(item, index) in value.options"
+                      v-for="(item, index) in value.Options"
                       :key="index"
-                      :value="item.value"
-                      :label="item.label"
+                      :value="item.Value"
+                      :label="item.Label"
                     >
-                      {{ item.label }}
+                      {{ item.Label }}
                     </t-option>
                   </t-select>
                 </div>
-                <div v-if="value.domType === 'switch'">
+                <div v-if="value.DomType === 'switch'">
                   <div :style="{ width: '322px' }">
                     <t-switch v-model="formData[key]" />
                   </div>
                 </div>
-                <div v-if="value.domType === 'slider'">
-                  <t-slider v-model="formData[key]" :style="{ width: '322px' }" :min="value.min" :max="value.max" />
+                <div v-if="value.DomType === 'slider'">
+                  <t-slider v-model="formData[key]" :style="{ width: '322px' }" :min="value.Min" :max="value.Max" />
                 </div>
               </t-form-item>
             </t-col>
@@ -142,22 +142,23 @@ export default {
 <script setup lang="ts">
 import type { FormRule, SubmitContext } from 'tdesign-vue-next';
 import { MessagePlugin } from 'tdesign-vue-next';
-import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 import { getContainerDetail } from '@/api/game';
 
 // import type { ContainerListResult } from '@/api/model/gameModel';
-import { PalFormConfig } from './config';
+import type { FormConfigType } from './config';
 
 const route = useRoute();
+const router = useRouter();
 
 const cardData = ref<Record<string, any>>({});
 const formData = ref<Record<string, any>>({});
 const loading = ref<boolean>(true);
 
 const FORM_RULES = ref<Record<string, FormRule[]>>({});
-const formConfig = computed(() => PalFormConfig);
+const formConfig = ref<Record<string, FormConfigType>>({});
 
 const onReset = () => {
   MessagePlugin.warning('取消配置');
@@ -170,26 +171,37 @@ const onSubmit = (ctx: SubmitContext) => {
 };
 
 const init = () => {
-  getContainerDetail(route.query.id as string)
+  const id = route.query.id as string;
+
+  if (!id) {
+    MessagePlugin.error('缺少必要参数, 请前往游戏列表页重新选择');
+    router.push({
+      name: 'GameBase',
+    });
+    return;
+  }
+
+  getContainerDetail(id)
     .then((res) => {
       cardData.value.Name = res.Game.Name;
       cardData.value.PicUrl = res.Game.PicUrl;
       cardData.value.IsEnabled = res.Game.IsEnabled;
+
+      formConfig.value = res.Game.ConfigFields;
+
+      Object.entries(res.Game.ConfigFields).forEach(([key, value]: [string, FormConfigType]) => {
+        FORM_RULES.value[key] = [
+          {
+            required: true,
+            message: `请输入${value.Label}`,
+            type: 'error',
+          },
+        ];
+      });
     })
     .finally(() => {
       loading.value = false;
     });
-
-  // 生成表单校验规则, TODO: 应该从后端获取到对应的表单动态值之后再生成
-  Object.entries(PalFormConfig).forEach(([key, value]) => {
-    FORM_RULES.value[key] = [
-      {
-        required: true,
-        message: `请输入${value.label}`,
-        type: 'error',
-      },
-    ];
-  });
 };
 
 init();

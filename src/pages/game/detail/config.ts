@@ -1,17 +1,12 @@
-// 应该于后端传入
-import * as FormConfig from './config';
+type FormOptionType = Array<{ Label: string; Value: string }>;
 
-export const PalFormConfig: Record<string, FormConfigType> = FormConfig as unknown as Record<string, FormConfigType>;
-
-type FormOptionType = Array<{ label: string; value: string }>;
-
-type FormConfigType<T extends 'slider' | 'input' | 'inputNumber' | 'select' | 'switch' = any> = {
-  domType: T;
-  label: string;
-  show?: boolean;
-  unit?: string;
-  min?: T extends 'slider' | 'inputNumber' ? number : undefined;
-  max?: T extends 'slider' | 'inputNumber' ? number : undefined;
-  step?: T extends 'slider' ? number : undefined;
-  options?: T extends 'select' ? FormOptionType : undefined;
+export type FormConfigType<T extends 'slider' | 'input' | 'inputNumber' | 'select' | 'switch' = any> = {
+  DomType: T;
+  Label: string;
+  Show?: boolean;
+  Unit?: string;
+  Min?: T extends 'slider' | 'inputNumber' ? number : undefined;
+  Max?: T extends 'slider' | 'inputNumber' ? number : undefined;
+  Step?: T extends 'slider' ? number : undefined;
+  Options?: T extends 'select' ? FormOptionType : undefined;
 };
