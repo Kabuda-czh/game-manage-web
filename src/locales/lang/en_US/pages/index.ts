@@ -1,3 +1,4 @@
+import adminGameBase from './admin-game-base';
 import adminUser from './admin-user';
 import dashboardBase from './dashboard-base';
 import dashboardDetail from './dashboard-detail';
@@ -14,6 +15,7 @@ import result from './result';
 import user from './user';
 
 export default {
+  adminGameBase,
   adminUser,
   dashboardBase,
   dashboardDetail,

@@ -215,6 +215,17 @@ export default [
                     },
                   },
                 },
+                {
+                  path: 'game/base',
+                  name: 'AdminGameBase',
+                  component: '/admin/game/base/index',
+                  meta: {
+                    title: {
+                      zh_CN: '游戏管理',
+                      en_US: 'Game',
+                    },
+                  },
+                },
               ],
             },
             // {
